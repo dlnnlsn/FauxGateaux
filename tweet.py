@@ -8,18 +8,20 @@ import tweepy
 
 options = getopt.getopt(sys.argv[1:], "i:t:", ["image=", "tweet="])
 
+hasTweet = False
+
 tweet = ""
 image = ""
 
 for option, value in options[0]:
-	if option in ["-t", "--tweet"]:
-		tweet = value
-	elif option in ["-i", "--image"]:
-		image = value
+    if option in ["-t", "--tweet"]:
+        hasTweet = True
+        tweet = value
+    elif option in ["-i", "--image"]:
+        image = value
 
-while tweet == "" and image == "":
+if not hasTweet:
     tweet = input("Enter tweet: ")
-    image = input("Enter image file path: ")
 
 auth = tweepy.OAuthHandler(consumer_key = credentials.con_key,
 	consumer_secret = credentials.con_secret)
@@ -30,7 +32,7 @@ auth.set_access_token(key = credentials.token,
 api = tweepy.API(auth)
 
 if image:
-	api.update_with_media(image, tweet)
+    api.update_with_media(image, tweet)
 else:
-	api.update_status(tweet)
+    api.update_status(tweet)
 
