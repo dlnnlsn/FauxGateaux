@@ -1,0 +1,10 @@
+__pycache__
+credentials.py
+bots/*/image*
+bots/*/*.pbm
+bots/*/*.ppm
+bots/*/status.txt
+bots/*/frames
+
+bots/GameOfLifeGIFs/random.life
+
